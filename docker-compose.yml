@@ -1,0 +1,23 @@
+#version: "3.9"
+services:
+  radioconda:
+    #image: radioconda  
+    build: .  #Use 'build: .' if you're actively developing the Dockerfile
+    container_name: radioconda_app
+    ports:
+      - "8000:8000"  # Expose the web interface (adjust if needed)
+    volumes:
+      - ./data:/app/data  # Persistent data storage
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      PYTHONUNBUFFERED: "1"  # Ensures real-time logging
+#    healthcheck:
+#      test: ["CMD", "python3", "-c", "import os; assert os.path.exists('/app/radioconda')"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 5
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_QPA_PLATFORM=xcb  # Force Qt to use X11, not Wayland
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
