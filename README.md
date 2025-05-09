@@ -56,42 +56,52 @@ If a window pops up, you win.
 
 
 ## 🤯 Common Gotchas
+
 ❌ "Could not connect to display"
-Did you run xhost +SI:localuser:$(whoami) on the host?
 
-Is DISPLAY variable set correctly inside the container?
+- Did you run xhost +SI:localuser:$(whoami) on the host?
 
-Did you mount /tmp/.X11-unix in the volume section?
+- Is DISPLAY variable set correctly inside the container?
+
+- Did you mount /tmp/.X11-unix in the volume section?
 
 ❌ GUI freezes or crashes
+
 Set QT_QPA_PLATFORM=xcb to force Qt to use X11, not Wayland.
 
 Don’t forget DISPLAY=$DISPLAY.
 
 ❌ You're using WSL
+
 GUI apps might work if you install VcXsrv or X410, set DISPLAY=host.docker.internal:0, and say a prayer.
 
 This setup isn’t built/tested for WSL. It probably needs some love.
 
 ## 🧪 Tested On
+
 ✅ Arch Linux + Hyprland
+
 ✅ Podman + Podman Compose
+
 ✅ XWayland installed & working
+
 ❌ WSL2 (Good luck. No promises.)
 
 ## 🧬 Make it Yours
+
 This is a one-size-fits-one solution. If your needs differ:
 
-Replace the Radioconda version in Dockerfile (RELEASE_VERSION)
+- Replace the Radioconda version in Dockerfile (RELEASE_VERSION)
 
-Add more conda packages via mamba install ...
+- Add more conda packages via mamba install ...
 
-Modify volumes and entrypoints as you see fit
+- Modify volumes and entrypoints as you see fit
 
-Pull requests, forks, and debugging tales welcome.
+- Pull requests, forks, and debugging tales welcome.
 
 
 ## 🧼 Cleanup
+
 To stop and remove everything:
 
 ```bash
@@ -99,6 +109,8 @@ podman-compose down
 xhost -SI:localuser:$(whoami)
 ```
 
-🛎️ License
+## 🛎️ License
+
 MIT. Go wild.
+
 🎙️ Made with way too much coffee and a burning desire to make SDR easier (actually it’s because of my TIC with not having more and more packages in the system, lol).
