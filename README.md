@@ -25,7 +25,7 @@ xhost +SI:localuser:$(whoami)
 ### 2. Clone & build:
 
 ```bash
-git clone https://github.com/paul0pv/radioconda-gui-container.git
+git clone https://github.com/paul0pv/gnu-radio-docker.git
 cd radioconda-gui-container
 podman-compose up --build -d  # or docker-compose if you're using Docker
 ```
